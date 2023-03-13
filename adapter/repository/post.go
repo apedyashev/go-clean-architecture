@@ -2,18 +2,22 @@ package repository
 
 import (
 	"posts/domain/model"
-	"posts/infrastructure/datastore"
 	"posts/usecase/repository"
 )
 
+type InMemoryDB interface {
+	Insert(d any) error
+	FindAll() ([]model.Post, error)
+}
+
 type postRepository struct {
 	// custom InMemoryDB for simplicity
-	db *datastore.InMemoryDB
+	db InMemoryDB
 }
 
 // By using the repository.PostRepository interface we specify that this repo
 // must implement this interface
-func NewPostRepository(db *datastore.InMemoryDB) repository.PostRepository {
+func NewPostRepository(db InMemoryDB) repository.PostRepository {
 	return &postRepository{db}
 }
 

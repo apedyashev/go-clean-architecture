@@ -2,7 +2,7 @@ package registry
 
 import (
 	"posts/adapter/controller"
-	"posts/infrastructure/datastore"
+	"posts/adapter/repository"
 )
 
 type Registry interface {
@@ -10,10 +10,10 @@ type Registry interface {
 }
 
 type registry struct {
-	db *datastore.InMemoryDB
+	db repository.InMemoryDB
 }
 
-func NewRegistry(db *datastore.InMemoryDB) registry {
+func NewRegistry(db repository.InMemoryDB) registry {
 	return registry{db}
 }
 

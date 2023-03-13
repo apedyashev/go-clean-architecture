@@ -2,6 +2,7 @@ package datastore
 
 import (
 	"fmt"
+	"posts/adapter/repository"
 	"posts/domain/model"
 )
 
@@ -14,7 +15,7 @@ type InMemoryDB struct {
 	items []model.Post
 }
 
-func NewDB() *InMemoryDB {
+func NewDB() repository.InMemoryDB {
 	return &InMemoryDB{
 		items: []model.Post{
 			{ID: 1, Title: "post 1", Images: []string{"uds-1d-cd"}},
